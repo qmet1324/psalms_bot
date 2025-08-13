@@ -1,9 +1,11 @@
 import os
+from dotenv import load_dotenv, dotenv_values
 import requests
-
 import telebot
 
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
+load_dotenv()
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
@@ -15,7 +17,7 @@ bot.set_my_commands(
 )
 
 @bot.message_handler(commands=['hello'])
-def send_verse(message):
+def send_greetings(message):
     bot.reply_to(message, "Greetings, the Son of God") 
 
 @bot.message_handler(commands=['verse'])
